@@ -5,20 +5,20 @@ const userRouter = require('./routes/user.route');
 const connection = require('./helpers/init_postgres');
 
 const app = express();
-
+app.use(express.static('public'))
 app.use('/js', express.static(__dirname + 'public/js'))
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(morgan('dev'));
 
-app.set('views','./view');
+app.set('views','./views');
 app.set('view engine','ejs');
 
-app.get('/', async (req, res, next) => {
-  res.render('index')
-});
+// app.get('/', async (req, res, next) => {
+//   res.render('index')
+// });
 
-app.use('/api', userRouter);
+app.use('/', userRouter);
 
 app.use((req, res, next) => {
   next(new Error('Does\nt exists'));

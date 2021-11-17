@@ -13,7 +13,7 @@ const User = sequelize.define('user',{
         type: DataTypes.STRING,
         allowNull: false,
         validate: {
-            notNull: {
+            notEmpty: {
               msg: 'Firstname cannot be empty'
             }
         }
@@ -37,6 +37,7 @@ const User = sequelize.define('user',{
         }
     }
 },{
+    paranoid:true,
     timestamps: true
 })
 
